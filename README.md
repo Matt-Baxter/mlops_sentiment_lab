@@ -1,4 +1,4 @@
-## Email Classification System
+# Email Classification System
 
 Overview: This project implements an email classification system that can categorize emails into different classes using sentence embeddings. 
 The original system was modified to load classification categories from a file rather than using hardcoded values, and an API endpoint was added to allow dynamic addition of new classification categories.
@@ -16,7 +16,7 @@ The original system was modified to load classification categories from a file r
 - classes.json: New file that stores available classification categories
 
 
-### Setup and Installation
+## Setup and Installation
 
 #### Clone the repository
 git clone https://github.com/Matt-Baxter/mlops_sentiment_lab.git
@@ -34,7 +34,7 @@ pip install -r requirements.txt
 #### Run the server
 python app.py
 
-### Usage Examples
+## Usage Examples
 
 #### Adding a New Classification Category
 curl -X POST -H "Content-Type: application/json" \
