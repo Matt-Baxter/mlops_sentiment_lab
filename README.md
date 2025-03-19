@@ -1,6 +1,6 @@
 # Email Classification System
 
-Overview: This project implements an email classification system that can categorize emails into different classes using sentence embeddings. 
+This project implements an email classification system that can categorize emails into different classes using sentence embeddings. 
 The original system was modified to load classification categories from a file rather than using hardcoded values, and an API endpoint was added to allow dynamic addition of new classification categories.
 
 ### Key Changes
