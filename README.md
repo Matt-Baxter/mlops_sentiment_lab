@@ -18,13 +18,14 @@ The original system was modified to load classification categories from a file r
 
 ### Setup and Installation
 
-bash
 #### Clone the repository
 git clone https://github.com/Matt-Baxter/mlops_sentiment_lab.git
+
 cd mlops_sentiment_lab
 
 #### Create and activate virtual environment
 python -m venv venv
+
 source venv/bin/activate
 
 #### Install dependencies
@@ -36,13 +37,11 @@ python app.py
 ### Usage Examples
 
 #### Adding a New Classification Category
-bash
 curl -X POST -H "Content-Type: application/json" \
   -d '{"class_name": "Technology"}' \
   http://localhost:3000/api/v1/add_class/
 
 #### Classifying Text
-bash
 curl -X POST -H "Content-Type: application/json" \
   -d '{"text": "The new software release includes AI features"}' \
   http://localhost:3000/api/v1/classify/
