@@ -6,24 +6,43 @@ sentiment_pipeline = pipeline("sentiment-analysis")
 model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 
 
-EMAIL_CLASSES = [
-    "Work", "Sports", "Food"
-]
+# New code:
+import json
+
+def load_classes():
+    try:
+        with open('classes.json', 'r') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        # Default classes if file doesn't exist
+        default_classes = ["Work", "Sports", "Food"]
+        with open('classes.json', 'w') as f:
+            json.dump(default_classes, f)
+        return default_classes
+
+# Load classes from file
+EMAIL_CLASSES = load_classes()
 
 def get_sentiment(text):
     response = sentiment_pipeline(text)
     return response
 
-def compute_embeddings(embeddings = EMAIL_CLASSES):
-    embeddings = model.encode(embeddings)
-    return zip(EMAIL_CLASSES, embeddings)
-
+# Modified code:
+def compute_embeddings(classes = None):
+    if classes is None:
+        classes = load_classes()
+    embeddings = model.encode(classes)
+    return zip(classes, embeddings)
+    
 def classify_email(text):
     # Encode the input text
     text_embedding = model.encode([text])[0]
     
-    # Get embeddings for all classes
-    class_embeddings = compute_embeddings()
+    # Get current classes (reloading to ensure latest classes are used)
+    current_classes = load_classes() # new line of code added
+    
+    # Calculate embeddings and continue with classification
+    class_embeddings = compute_embeddings(current_classes)
     
     # Calculate distances and return results
     results = []
